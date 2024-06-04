@@ -2,6 +2,7 @@
 using APIListaDeTarefas.Dto.Task;
 using APIListaDeTarefas.Interfaces;
 using APIListaDeTarefas.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace APIListaDeTarefas.Services
 {
@@ -13,9 +14,30 @@ namespace APIListaDeTarefas.Services
             _context = context;
         }
 
-        public Task<ResponseModel<List<TaskModel>>> ListTasks()
+        public async Task<ResponseModel<List<TaskModel>>> ListTasks()
         {
-            throw new NotImplementedException();
+            ResponseModel<List<TaskModel>> responseModel = new ResponseModel<List<TaskModel>>();
+
+            try
+            {
+                if (_context.Tasks.Count() ==  0)
+                {
+                    responseModel.Data = null;
+                    responseModel.Message = "No data found";
+                    responseModel.Status = false;
+                    return responseModel;
+                }
+
+                responseModel.Data = await _context.Tasks.ToListAsync();
+                responseModel.Message = "Task list found!";
+                return responseModel;
+            }
+            catch (Exception ex)
+            {
+                responseModel.Message = ex.Message;
+                responseModel.Status = false;
+                return responseModel;
+            }
         }
 
         public Task<ResponseModel<TaskModel>> GetTaskById(int id)

@@ -13,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUserInterface, UserService>();
+builder.Services.AddScoped<ITaskInterface, TaskService>();
 
 var DefaultConnection = "server=localhost;userid=root;password=895smigol;database=LivroAutor;";
 
