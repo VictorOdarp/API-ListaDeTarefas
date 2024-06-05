@@ -47,7 +47,7 @@ namespace APIListaDeTarefas.Services
 
             try
             {
-                UserModel user = await _context.Users.FirstOrDefaultAsync(userData  => userData.Id == id); 
+                UserModel user = await _context.Users.Include(Task => Task.Tasks).FirstOrDefaultAsync(userData  => userData.Id == id); 
 
                 if (user == null)
                 {
