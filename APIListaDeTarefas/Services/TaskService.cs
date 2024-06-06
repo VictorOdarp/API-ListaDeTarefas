@@ -69,15 +69,15 @@ namespace APIListaDeTarefas.Services
             }
         } 
 
-        public async Task<ResponseModel<List<TaskModel>>> GetTaskByIdUser(int id)
+        public async Task<ResponseModel<List<TaskModel>>> GetTaskByIdUser(int idUser)
         {
             ResponseModel<List<TaskModel>> responseModel = new ResponseModel<List<TaskModel>>();
 
             try
             {
-                UserModel user = await _context.Users.Include(task => task.Tasks).FirstOrDefaultAsync(x => x.Id == id); 
+                var task = await _context.Tasks.Include(user => user.User).Where(bancoTasks => bancoTasks.User.Id == idUser).ToListAsync();
 
-                if (user == null)
+                if (task == null)
                 {
                     responseModel.Data = null;
                     responseModel.Message = "Id User not found!";
@@ -85,8 +85,8 @@ namespace APIListaDeTarefas.Services
                     return responseModel;
                 }
 
-                responseModel.Data = user.Tasks.ToList();
-                responseModel.Message = "Tasks found by Autor";
+                responseModel.Data = task;
+                responseModel.Message = "Tasks found by User";
                 return responseModel;
             }
             catch (Exception ex)
@@ -97,19 +97,120 @@ namespace APIListaDeTarefas.Services
             }
         }
 
-        public Task<ResponseModel<List<TaskModel>>> CreateTask(TaskCriacaoDto newTask)
+        public async Task<ResponseModel<List<TaskModel>>> CreateTask(TaskCriacaoDto newTask)
         {
-            throw new NotImplementedException();
+            ResponseModel<List<TaskModel>> responseModel = new ResponseModel<List<TaskModel>>();
+
+            try
+            { 
+
+                UserModel user = await _context.Users.FirstOrDefaultAsync(bancoUsers => bancoUsers.Id == newTask.User.Id);
+
+                if (user == null)
+                {
+                    responseModel.Data = null;
+                    responseModel.Message = "User not found";
+                    responseModel.Status = false;
+                    return responseModel;
+                }
+
+                TaskModel task = new TaskModel()
+                {
+                    Title = newTask.Title,
+                    Description = newTask.Description,
+                    User = user,
+                };
+
+                _context.Add(task);
+                await _context.SaveChangesAsync();
+
+                responseModel.Data = await _context.Tasks.Include(user => user.User).ToListAsync();
+                responseModel.Message = "Task created successfully";
+                return responseModel;
+
+            }
+            catch (Exception ex)
+            {
+                responseModel.Message = ex.Message;
+                responseModel.Status = false;
+                return responseModel;
+            }
         }
 
-        public Task<ResponseModel<List<TaskModel>>> EditTask(TaskEdicaoDto editTask)
+        public async Task<ResponseModel<List<TaskModel>>> EditTask(TaskEdicaoDto editTask)
         {
-            throw new NotImplementedException();
+            ResponseModel<List<TaskModel>> responseModel = new ResponseModel<List<TaskModel>>();
+
+            try
+            {
+                TaskModel task = await _context.Tasks.FirstOrDefaultAsync(bancoTasks => bancoTasks.Id == editTask.Id);
+
+                if (task == null)
+                {
+                    responseModel.Data = null;
+                    responseModel.Message = "Task not found!";
+                    responseModel.Status = false;
+                    return responseModel;
+                }
+
+                UserModel user = await _context.Users.FirstOrDefaultAsync(bancoUser => bancoUser.Id == editTask.User.Id);
+
+                if (user == null)
+                {
+                    responseModel.Data = null;
+                    responseModel.Message = "User not found!";
+                    responseModel.Status = false;
+                    return responseModel;
+                }
+
+                task.Title = editTask.Title;
+                task.Description = editTask.Description;
+                task.User = user;
+
+                _context.Update(task);
+                await _context.SaveChangesAsync();
+
+                responseModel.Data = await _context.Tasks.Include(user => user.User).ToListAsync();
+                responseModel.Message = "Task edited sucessfully!";
+                return responseModel;
+            }
+            catch (Exception ex)
+            {
+                responseModel.Message = ex.Message;
+                responseModel.Status = false;
+                return responseModel;
+            }
         }
 
-        public Task<ResponseModel<List<TaskModel>>> DeleteTask(int id)
+        public async Task<ResponseModel<List<TaskModel>>> DeleteTask(int idTask)
         {
-            throw new NotImplementedException();
+            ResponseModel<List<TaskModel>> responseModel = new ResponseModel<List<TaskModel>>();
+
+            try
+            {
+                TaskModel task = await _context.Tasks.FirstOrDefaultAsync(task => task.Id == idTask);
+
+                if (task == null)
+                {
+                    responseModel.Data = null;
+                    responseModel.Message = "Data not found!";
+                    responseModel.Status = false;
+                    return responseModel;
+                }
+
+                _context.Remove(task);
+                await _context.SaveChangesAsync();
+
+                responseModel.Data = await _context.Tasks.Include(user => user.User).ToListAsync();
+                responseModel.Message = "Task removed sucessfully";
+                return responseModel;
+            }
+            catch (Exception ex)
+            {
+                responseModel.Message = ex.Message;
+                responseModel.Status = false;
+                return responseModel;
+            }
         }
     }
 }
