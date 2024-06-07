@@ -77,7 +77,7 @@ namespace APIListaDeTarefas.Services
             {
                 var task = await _context.Tasks.Include(user => user.User).Where(bancoTasks => bancoTasks.User.Id == idUser).ToListAsync();
 
-                if (task == null)
+                if (task.Count() == 0)
                 {
                     responseModel.Data = null;
                     responseModel.Message = "Id User not found!";

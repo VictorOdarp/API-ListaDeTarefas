@@ -80,7 +80,7 @@ namespace APIListaDeTarefas.Services
                 if (task == null)
                 {
                     responseModel.Data = null;
-                    responseModel.Message = "Data not found!";
+                    responseModel.Message = "Task not found!";
                     responseModel.Status = false;
                     return responseModel;
                 }
@@ -150,6 +150,7 @@ namespace APIListaDeTarefas.Services
                     return responseModel;
                 }
 
+                user.Id = editUser.Id;
                 user.Name = editUser.Name;
                 user.Surname = editUser.Surname;
 
