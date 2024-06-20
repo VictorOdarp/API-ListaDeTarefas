@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ebW9FOKVIDLQnwDIsFFOB08JYXTjNm1d3evvDckjIWQHFs9G3fuqriUEc0ZfPLqvRqDwB59TgcylmtzAuhPveQ==",
+  "dgSpecHash": "iLPjziThz6Q9hS0/eZOoi3uB0CTjYgiYl44gT1Qzk8pj9yprp9uAl2nEfcYWln+bkx3MqZcslATtcKKK4y2wCw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Victo\\Desktop\\ASP.NET CORE CURSO\\APIListaDeTarefas\\APIListaDeTarefas\\APIListaDeTarefas.csproj",
+  "projectFilePath": "C:\\Users\\Victo\\Documents\\Estudos Programação\\ASP.NET CORE CURSO\\APIListaDeTarefas\\APIListaDeTarefas\\APIListaDeTarefas.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Victo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Victo\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.13\\microsoft.aspnetcore.openapi.7.0.13.nupkg.sha512",

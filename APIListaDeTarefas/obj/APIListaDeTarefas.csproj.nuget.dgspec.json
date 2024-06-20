@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Victo\\Desktop\\ASP.NET CORE CURSO\\APIListaDeTarefas\\APIListaDeTarefas\\APIListaDeTarefas.csproj": {}
+    "C:\\Users\\Victo\\Documents\\Estudos Programação\\ASP.NET CORE CURSO\\APIListaDeTarefas\\APIListaDeTarefas\\APIListaDeTarefas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Victo\\Desktop\\ASP.NET CORE CURSO\\APIListaDeTarefas\\APIListaDeTarefas\\APIListaDeTarefas.csproj": {
+    "C:\\Users\\Victo\\Documents\\Estudos Programação\\ASP.NET CORE CURSO\\APIListaDeTarefas\\APIListaDeTarefas\\APIListaDeTarefas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Victo\\Desktop\\ASP.NET CORE CURSO\\APIListaDeTarefas\\APIListaDeTarefas\\APIListaDeTarefas.csproj",
+        "projectUniqueName": "C:\\Users\\Victo\\Documents\\Estudos Programação\\ASP.NET CORE CURSO\\APIListaDeTarefas\\APIListaDeTarefas\\APIListaDeTarefas.csproj",
         "projectName": "APIListaDeTarefas",
-        "projectPath": "C:\\Users\\Victo\\Desktop\\ASP.NET CORE CURSO\\APIListaDeTarefas\\APIListaDeTarefas\\APIListaDeTarefas.csproj",
+        "projectPath": "C:\\Users\\Victo\\Documents\\Estudos Programação\\ASP.NET CORE CURSO\\APIListaDeTarefas\\APIListaDeTarefas\\APIListaDeTarefas.csproj",
         "packagesPath": "C:\\Users\\Victo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Victo\\Desktop\\ASP.NET CORE CURSO\\APIListaDeTarefas\\APIListaDeTarefas\\obj\\",
+        "outputPath": "C:\\Users\\Victo\\Documents\\Estudos Programação\\ASP.NET CORE CURSO\\APIListaDeTarefas\\APIListaDeTarefas\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Victo\\AppData\\Roaming\\NuGet\\NuGet.Config",

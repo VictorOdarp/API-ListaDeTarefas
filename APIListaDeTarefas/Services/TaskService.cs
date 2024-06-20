@@ -1,6 +1,7 @@
 ﻿using APIListaDeTarefas.Data;
 using APIListaDeTarefas.Dto.Task;
 using APIListaDeTarefas.Interfaces;
+using APIListaDeTarefas.Logs;
 using APIListaDeTarefas.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
@@ -31,12 +32,14 @@ namespace APIListaDeTarefas.Services
 
                 responseModel.Data = await _context.Tasks.Include(user => user.User).ToListAsync();
                 responseModel.Message = "Task list found!";
+                Log.LogInFile("List Tasks - SUCCESS", responseModel.Message);
                 return responseModel;
             }
             catch (Exception ex)
             {
                 responseModel.Message = ex.Message;
                 responseModel.Status = false;
+                Log.LogInFile("List Tasks - ERROR", ex.Message);
                 return responseModel;
             }
         }
